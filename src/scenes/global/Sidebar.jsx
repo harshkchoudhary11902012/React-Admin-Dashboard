@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
-import "react-pro-sidebar/dist/css/styles.css";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
+import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
@@ -23,7 +23,9 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 	return (
 		<MenuItem
 			active={selected === title}
-			style={{ color: colors.grey[100] }}
+			style={{
+				color: colors.grey[100],
+			}}
 			onClick={() => setSelected(title)}
 			icon={icon}
 		>
@@ -61,6 +63,7 @@ const Sidebar = () => {
 		>
 			<ProSidebar collapsed={isCollapsed}>
 				<Menu iconShape="square">
+					{/* LOGO AND MENU ICON */}
 					<MenuItem
 						onClick={() => setIsCollapsed(!isCollapsed)}
 						icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
@@ -80,6 +83,7 @@ const Sidebar = () => {
 							</Box>
 						)}
 					</MenuItem>
+
 					{!isCollapsed && (
 						<Box mb="25px">
 							<Box display="flex" justifyContent="center" alignItems="center">
@@ -106,14 +110,16 @@ const Sidebar = () => {
 							</Box>
 						</Box>
 					)}
+
 					<Box paddingLeft={isCollapsed ? undefined : "10%"}>
 						<Item
-							title={"Dashboard"}
-							to={"/"}
+							title="Dashboard"
+							to="/"
 							icon={<HomeOutlinedIcon />}
 							selected={selected}
 							setSelected={setSelected}
 						/>
+
 						<Typography variant="h6" color={colors.grey[300]} sx={{ m: "15px 0 5px 20px" }}>
 							Data
 						</Typography>
@@ -201,4 +207,5 @@ const Sidebar = () => {
 		</Box>
 	);
 };
+
 export default Sidebar;
